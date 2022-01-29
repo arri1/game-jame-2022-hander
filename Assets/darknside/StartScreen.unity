@@ -757,6 +757,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114998343298060866, guid: dddb870645bdee94092fff3b5a85a34b,
         type: 3}
+      propertyPath: m_Text
+      value: "\u0418\u0413\u0420\u0410\u0422\u042C\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114998343298060866, guid: dddb870645bdee94092fff3b5a85a34b,
+        type: 3}
       propertyPath: m_Color.b
       value: 0.73333335
       objectReference: {fileID: 0}
