@@ -60,6 +60,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -84,7 +86,7 @@ SpriteRenderer:
   m_SortingLayerID: 1795597123
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f6e4d225041a7284e8538c23793a5807, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5f1884d90c4d174397579adbfd1784f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +105,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4cc99f589f4913b4d9a92494746ba378, type: 2}
   m_CullingMode: 0
@@ -131,7 +133,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.12, y: 2}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -234,6 +236,9 @@ MonoBehaviour:
   MidHeightOneWayPlatformMask:
     serializedVersion: 2
     m_Bits: 67108864
+  StairsMask:
+    serializedVersion: 2
+    m_Bits: 0
   DetachmentMethod: 0
   SafeSetTransform: 0
   StandingOn: {fileID: 0}
@@ -243,6 +248,7 @@ MonoBehaviour:
   CrouchedRaycastLengthMultiplier: 1
   CastRaysOnBothSides: 0
   DistanceToTheGroundRayMaximumLength: 100
+  PerformSafetyBoxcast: 0
   StickToSlopes: 0
   StickyRaycastLength: 0
   StickToSlopesOffsetY: 0.2
@@ -274,6 +280,8 @@ MonoBehaviour:
   DamagedTakenKnockbackDirection: 0
   DamageTakenKnockbackForce: {x: 10, y: 0}
   DamageTakenInvincibilityDuration: 0.5
+  HitDamageableFeedback: {fileID: 0}
+  HitNonDamageableFeedback: {fileID: 0}
   FreezeFramesOnHitDuration: 0
   Owner: {fileID: 0}
 --- !u!114 &11400006
@@ -293,12 +301,9 @@ MonoBehaviour:
   InitialHealth: 10
   MaximumHealth: 10
   Invulnerable: 0
-  DamageEffect: {fileID: 100000, guid: 9968e0a9f50a6e143ae32099a2ff386b, type: 3}
-  DamageSfx: {fileID: 0}
   DamageFeedbacks: {fileID: 6814792830427099241}
   FlickerSpriteOnHit: 1
   ImmuneToKnockback: 0
-  DeathEffect: {fileID: 100000, guid: 9968e0a9f50a6e143ae32099a2ff386b, type: 3}
   DeathFeedbacks: {fileID: 910387158634660804}
   DestroyOnDeath: 1
   DelayBeforeDestruction: 0
@@ -323,8 +328,6 @@ MonoBehaviour:
   RespawnOnPlayerRespawn: 1
   RepositionToInitOnPlayerRespawn: 0
   AutoRespawnDuration: 0
-  RespawnEffect: {fileID: 0}
-  RespawnSfx: {fileID: 0}
   RespawnFeedback: {fileID: 0}
 --- !u!114 &114000012785992144
 MonoBehaviour:
@@ -367,17 +370,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e24d0eb5fa7640038713564930581a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AbilityStartSfx: {fileID: 0}
-  AbilityInProgressSfx: {fileID: 0}
-  AbilityStopSfx: {fileID: 0}
+  AbilityStartFeedbacks: {fileID: 0}
+  AbilityStopFeedbacks: {fileID: 0}
   AbilityPermitted: 1
   WalkSpeed: 6
   MovementSpeedMultiplier: 1
   PushSpeedMultiplier: 1
+  StateSpeedMultiplier: 1
+  ReadInput: 1
   InstantAcceleration: 0
   InputThreshold: 0.1
-  TouchTheGroundEffect: {fileID: 0}
-  TouchTheGroundSfx: {fileID: 0}
+  AirControl: 1
+  AllowFlipInTheAir: 1
+  TouchTheGroundFeedback: {fileID: 0}
+  MinimumAirTimeBeforeFeedback: 0.2
 --- !u!114 &114000012564935690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,15 +396,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a07c6668aa55403790d27b575279549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AbilityStartSfx: {fileID: 0}
-  AbilityInProgressSfx: {fileID: 0}
-  AbilityStopSfx: {fileID: 0}
+  AbilityStartFeedbacks: {fileID: 0}
+  AbilityStopFeedbacks: {fileID: 0}
   AbilityPermitted: 1
   InitialWeapon: {fileID: 114000010596316938, guid: 31b98a142002e4a0fadf0e937e5d458f,
     type: 3}
   CanPickupWeapons: 0
   WeaponAttachment: {fileID: 0}
+  ForceWeaponScaleResetOnEquip: 0
   AutomaticallyBindAnimator: 1
+  AmmoDisplayID: 0
   ContinuousPress: 0
   GettingHitInterruptsAttack: 0
   BufferInput: 0
@@ -509,6 +516,7 @@ MonoBehaviour:
   Feedbacks:
   - {fileID: 4730859149464361880}
   InitializationMode: 2
+  AutoPlayOnStart: 0
   DebugActive: 0
 --- !u!114 &4730859149464361880
 MonoBehaviour:
@@ -526,15 +534,24 @@ MonoBehaviour:
   Label: Particles Instantiation
   Chance: 100
   Timing:
+    TimescaleMode: 0
     InitialDelay: 0
     CooldownDuration: 0
     NumberOfRepeats: 0
     RepeatForever: 0
     DelayBetweenRepeats: 1
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
   DebugActive: 0
   Mode: 1
+  CachedRecycle: 1
   ParticlesPrefab: {fileID: 19800000, guid: 9968e0a9f50a6e143ae32099a2ff386b, type: 3}
+  PositionMode: 0
   InstantiateParticlesPosition: {fileID: 0}
+  TargetWorldPosition: {x: 0, y: 0, z: 0}
+  Offset: {x: 0, y: 0, z: 0}
   NestParticles: 0
 --- !u!1 &5825598982937778186
 GameObject:
@@ -583,6 +600,7 @@ MonoBehaviour:
   Feedbacks:
   - {fileID: 1711127696552732283}
   InitializationMode: 2
+  AutoPlayOnStart: 0
   DebugActive: 0
 --- !u!114 &1711127696552732283
 MonoBehaviour:
@@ -600,13 +618,22 @@ MonoBehaviour:
   Label: Particles Instantiation
   Chance: 100
   Timing:
+    TimescaleMode: 0
     InitialDelay: 0
     CooldownDuration: 0
     NumberOfRepeats: 0
     RepeatForever: 0
     DelayBetweenRepeats: 1
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
   DebugActive: 0
   Mode: 1
+  CachedRecycle: 1
   ParticlesPrefab: {fileID: 19800000, guid: 65c210b4af5c9d544814a1bb717df020, type: 3}
+  PositionMode: 0
   InstantiateParticlesPosition: {fileID: 0}
+  TargetWorldPosition: {x: 0, y: 0, z: 0}
+  Offset: {x: 0, y: 0, z: 0}
   NestParticles: 0
