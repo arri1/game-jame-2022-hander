@@ -624,7 +624,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PLAY
+  m_Text: "\u0418\u0413\u0420\u0410\u0422\u042C"
 --- !u!114 &114861998153790124
 MonoBehaviour:
   m_ObjectHideFlags: 0
